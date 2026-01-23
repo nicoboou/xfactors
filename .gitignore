@@ -1,0 +1,14 @@
+*.ckpt
+**/__pycache__/*
+*.pyc
+*.png
+*.pth
+*.pt
+.venv/*
+.python-version*
+.env
+disdiff_adapters/logs/*
+**/out/*
+**/PyTorch-VAE/*
+**/lightning_logs/*
+**/data/*

@@ -1,0 +1,459 @@
+{
+  "2": {
+    "shapes": {
+      "bt1": {
+        "bs1": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=50_beta=(1.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor0,1,2,3,4,5/batch32/test_dim_s2/x_epoch=100_beta=(1.0,1.0)_latent=(2,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=50_beta=(100.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor0,1,2,3,4,5/batch32/test_dim_s2/x_epoch=100_beta=(100.0,1.0)_latent=(2,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=50_beta=(500.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor0,1,2,3,4,5/batch32/test_dim_s2/x_epoch=100_beta=(500.0,1.0)_latent=(2,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=50_beta=(1.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=50_beta=(100.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=50_beta=(100.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        }
+      }
+    },
+    "dsprites": {
+      "bt1": {
+        "bs1": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=50_beta=(1.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor0,1,2,3,4/batch32/test_dim_s2/x_epoch=100_beta=(1.0,1.0)_latent=(2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=50_beta=(100.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor0,1,2,3,4/batch32/test_dim_s2/x_epoch=100_beta=(100.0,1.0)_latent=(2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=50_beta=(500.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor0,1,2,3,4/batch32/test_dim_s2/x_epoch=100_beta=(500.0,1.0)_latent=(2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=50_beta=(1.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=50_beta=(100.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=50_beta=(100.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        }
+      }
+    },
+    "mpi3d": {
+      "bt1": {
+        "bs1": {
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor0,1,2,3,4,5,6/batch32/test_dim_s2/x_epoch=100_beta=(1.0,1.0)_latent=(2,2,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=70_beta=(1.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor0,1,2,3,4,5,6/batch32/test_dim_s2/x_epoch=100_beta=(100.0,1.0)_latent=(2,2,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=70_beta=(100.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor0,1,2,3,4,5,6/batch32/test_dim_s2/x_epoch=100_beta=(500.0,1.0)_latent=(2,2,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=70_beta=(500.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=70_beta=(1.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=70_beta=(100.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=70_beta=(100.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        }
+      }
+    },
+    "cars3d": {
+      "bt1": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/cars3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=500_beta=(1.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/cars3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=500_beta=(100.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/cars3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=500_beta=(500.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/cars3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=500_beta=(1.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/cars3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=500_beta=(100.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/cars3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s2/x_epoch=500_beta=(100.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        }
+      }
+    },
+    "celeba": {
+      "bt1": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/celeba/loss_vae_nce/factor=final/batch32/test_dim_s2/x_epoch=65_beta=(1.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/celeba/loss_vae_nce/factor=final/batch32/test_dim_s2/x_epoch=65_beta=(100.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/celeba/loss_vae_nce/factor=final/batch32/test_dim_s2/x_epoch=65_beta=(500.0,1.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/celeba/loss_vae_nce/factor=final/batch32/test_dim_s2/x_epoch=65_beta=(1.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/celeba/loss_vae_nce/factor=final/batch32/test_dim_s2/x_epoch=65_beta=(100.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/celeba/loss_vae_nce/factor=final/batch32/test_dim_s2/x_epoch=65_beta=(500.0,100.0)_latent=(2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        }
+      }
+    }
+  },
+  
+  "8": {
+    "shapes": {
+      "bt1": {
+        "bs1": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=50_beta=(1.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor0,1,2,3,4,5/batch32/test_dim_s8/x_epoch=100_beta=(1.0,1.0)_latent=(8,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=50_beta=(100.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor0,1,2,3,4,5/batch32/test_dim_s8/x_epoch=100_beta=(100.0,1.0)_latent=(8,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=50_beta=(500.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor0,1,2,3,4,5/batch32/test_dim_s8/x_epoch=100_beta=(500.0,1.0)_latent=(8,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=50_beta=(1.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=50_beta=(100.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=50_beta=(500.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        }
+      }
+    },
+    "dsprites": {
+      "bt1": {
+        "bs1": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=50_beta=(1.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor0,1,2,3,4/batch32/test_dim_s8/x_epoch=100_beta=(1.0,1.0)_latent=(8,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=50_beta=(100.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor0,1,2,3,4/batch32/test_dim_s8/x_epoch=100_beta=(100.0,1.0)_latent=(8,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=50_beta=(500.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor0,1,2,3,4/batch32/test_dim_s8/x_epoch=100_beta=(500.0,1.0)_latent=(8,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=50_beta=(1.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=50_beta=(100.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=50_beta=(500.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        }
+      }
+    },
+    "mpi3d": {
+      "bt1": {
+        "bs1": {
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor0,1,2,3,4,5,6/batch32/test_dim_s8/x_epoch=100_beta=(1.0,1.0)_latent=(8,2,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=70_beta=(1.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=70_beta=(100.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor0,1,2,3,4,5,6/batch32/test_dim_s8/x_epoch=100_beta=(500.0,1.0)_latent=(8,2,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=70_beta=(500.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=70_beta=(1.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=70_beta=(100.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=70_beta=(500.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        }
+      }
+    },
+    "cars3d": {
+      "bt1": {
+        "bs1": {
+            "all": "",
+            "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/cars3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=500_beta=(1.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+          },
+          "bs100": {
+            "all": "",
+            "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/cars3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=500_beta=(100.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+          },
+          "bs500": {
+            "all": "",
+            "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/cars3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=500_beta=(500.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+          }
+        },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/cars3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=500_beta=(1.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/cars3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=500_beta=(100.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/cars3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s8/x_epoch=500_beta=(500.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0__with_merge/checkpoints/last.ckpt"
+        }
+      }
+    },
+"celeba": {
+      "bt1": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/celeba/loss_vae_nce/factor=final/batch32/test_dim_s8/x_epoch=65_beta=(1.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/celeba/loss_vae_nce/factor=final/batch32/test_dim_s8/x_epoch=65_beta=(100.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/celeba/loss_vae_nce/factor=final/batch32/test_dim_s8/x_epoch=65_beta=(500.0,1.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/celeba/loss_vae_nce/factor=final/batch32/test_dim_s8/x_epoch=65_beta=(1.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/celeba/loss_vae_nce/factor=final/batch32/test_dim_s8/x_epoch=65_beta=(100.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/celeba/loss_vae_nce/factor=final/batch32/test_dim_s8/x_epoch=65_beta=(500.0,100.0)_latent=(8,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        }
+      }
+    }
+  },
+  "126": {
+    "shapes": {
+      "bt1": {
+        "bs1": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(1.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor0,1,2,3,4,5/batch32/test_dim_s126/x_epoch=100_beta=(1.0,1.0)_latent=(126,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(100.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor0,1,2,3,4,5/batch32/test_dim_s126/x_epoch=100_beta=(100.0,1.0)_latent=(126,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(500.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/shapes/loss_vae_nce/factor0,1,2,3,4,5/batch32/test_dim_s126/x_epoch=100_beta=(500.0,1.0)_latent=(126,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(1.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(100.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/shapes/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(500.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt"
+        }
+      }
+    },
+    "dsprites": {
+      "bt1": {
+        "bs1": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(1.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor0,1,2,3,4/batch32/test_dim_s126/x_epoch=100_beta=(1.0,1.0)_latent=(126,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(100.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor0,1,2,3,4/batch32/test_dim_s126/x_epoch=100_beta=(100.0,1.0)_latent=(126,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(500.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt",
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/dsprites/loss_vae_nce/factor0,1,2,3,4/batch32/test_dim_s126/x_epoch=100_beta=(500.0,1.0)_latent=(126,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(1.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(100.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/dsprites/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(500.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt"
+        }
+      }
+    },
+    "mpi3d": {
+      "bt1": {
+        "bs1": {
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor0,1,2,3,4,5,6/batch32/test_dim_s126/x_epoch=100_beta=(1.0,1.0)_latent=(126,2,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(1.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor0,1,2,3,4,5,6/batch32/test_dim_s126/x_epoch=100_beta=(100.0,1.0)_latent=(126,2,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(100.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor0,1,2,3,4,5,6/batch32/test_dim_s126/x_epoch=100_beta=(500.0,1.0)_latent=(126,2,2,2,2,2,2,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1,0.1,0.1,0.1,0.1,0.1,0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(500.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(1.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(100.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/mpi3d/loss_vae_nce/factor_s=-1/batch32/test_dim_s126/x_epoch=70_beta=(500.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=s=-1/checkpoints/last.ckpt"
+        }
+      }
+    },
+    "cars3d": {
+      "bt1": {
+        "bs1": {
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/cars3d/loss_vae_nce/factor-1/batch32/test_dim_s126/x_epoch=70_beta=(1.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/cars3d/loss_vae_nce/factor=1,2/batch32/test_dim_s126/x_epoch=500_beta=(1.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=1,2/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/cars3d/loss_vae_nce/factor-1/batch32/test_dim_s126/x_epoch=70_beta=(100.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/cars3d/loss_vae_nce/factor=1,2/batch32/test_dim_s126/x_epoch=500_beta=(100.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=1,2/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/cars3d/loss_vae_nce/factor-1/batch32/test_dim_s126/x_epoch=70_beta=(500.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=-1/checkpoints/last.ckpt",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/cars3d/loss_vae_nce/factor=1,2/batch32/test_dim_s126/x_epoch=500_beta=(500.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=1,2/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/cars3d/loss_vae_nce/factor=1,2/batch32/test_dim_s126/x_epoch=500_beta=(1.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=1,2/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/cars3d/loss_vae_nce/factor=1,2/batch32/test_dim_s126/x_epoch=500_beta=(100.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=1,2/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/cars3d/loss_vae_nce/factor=1,2/batch32/test_dim_s126/x_epoch=500_beta=(500.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=1,2/checkpoints/last.ckpt"
+        }
+      }
+    },
+    "celeba": {
+      "bt1": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/celeba/loss_vae_nce/factor=final/batch32/test_dim_s126/x_epoch=65_beta=(1.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/celeba/loss_vae_nce/factor=final/batch32/test_dim_s126/x_epoch=65_beta=(100.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t1/celeba/loss_vae_nce/factor=final/batch32/test_dim_s126/x_epoch=65_beta=(500.0,1.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        }
+      },
+      "bt100": {
+        "bs1": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/celeba/loss_vae_nce/factor=final/batch32/test_dim_s126/x_epoch=65_beta=(1.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        },
+        "bs100": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/celeba/loss_vae_nce/factor=final/batch32/test_dim_s126/x_epoch=65_beta=(100.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        },
+        "bs500": {
+          "all": "",
+          "n-1": "/projects/compures/alexandre/disdiff_adapters/disdiff_adapters/logs/x_with_beta_t100/celeba/loss_vae_nce/factor=final/batch32/test_dim_s126/x_epoch=65_beta=(500.0,100.0)_latent=(126,2)_batch=32_warm_up=False_lr=1e-05_arch=res+l_cov=0.0+l_nce=0.1+l_anti_nce=0.0_factor=15,20,26,31,35,36/checkpoints/last.ckpt"
+        }
+      }
+    }
+  }
+}
