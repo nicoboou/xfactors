@@ -12,3 +12,4 @@ disdiff_adapters/logs/*
 **/PyTorch-VAE/*
 **/lightning_logs/*
 **/data/*
+uv.lock

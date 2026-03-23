@@ -6,14 +6,15 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap, BoundaryNorm
 import math
 from PIL import Image, ImageDraw, ImageFont
-import seaborn as sns # type: ignore
+import seaborn as sns  # type: ignore
 from disdiff_adapters.loss import *
 import json
 from pathlib import Path
 
 from sklearn.decomposition import PCA
 
-def load_h5(h5_path: str) :
+
+def load_h5(h5_path: str):
     """
     Load datasetH5 object from a H5 file.
 
@@ -23,12 +24,14 @@ def load_h5(h5_path: str) :
     Return:
         list of datasetH5
     """
-    try : 
+    try:
         dataset_h5 = h5py.File(h5_path, "r")
         return [dataset_h5[key] for key in dataset_h5.keys()]
-    except FileNotFoundError as e : print("WARNING : file not foud.")
-    
-def split(data: torch.Tensor, label: torch.Tensor, ratio: float=0.8) :
+    except FileNotFoundError as e:
+        print("WARNING : file not foud.")
+
+
+def split(data: torch.Tensor, label: torch.Tensor, ratio: float = 0.8):
     """
     Shuffle and split (data,label) in a train, val and test set.
     The ratio is the size of the train set.
@@ -47,9 +50,9 @@ def split(data: torch.Tensor, label: torch.Tensor, ratio: float=0.8) :
 
     idx = torch.randperm(len(data))
 
-    train_idx, _ = sort(idx[:int(len(data)*ratio)])
-    
-    test_idx, _ = sort(idx[int(len(data)*(ratio)):])
+    train_idx, _ = sort(idx[: int(len(data) * ratio)])
+
+    test_idx, _ = sort(idx[int(len(data) * (ratio)) :])
 
     train_data = data[train_idx]
     train_label = label[train_idx]
@@ -60,35 +63,40 @@ def split(data: torch.Tensor, label: torch.Tensor, ratio: float=0.8) :
 
     return torch.tensor(train_data), torch.tensor(train_label), torch.tensor(test_data), torch.tensor(test_label)
 
+
 def display(batch: tuple[torch.Tensor]) -> None:
     """
     Affiche un batch d'images RGB.
     batch = (images [B,C,H,W], labels [B,])
     """
     images, labels = batch
-    if not isinstance(images, torch.Tensor) : images = torch.from_numpy(images)
-    if not isinstance(labels, torch.Tensor) : labels = torch.from_numpy(labels)
+    if not isinstance(images, torch.Tensor):
+        images = torch.from_numpy(images)
+    if not isinstance(labels, torch.Tensor):
+        labels = torch.from_numpy(labels)
     nb_samples = images.size(0)
 
     # grille quasi carrée
     nb_col = math.ceil(math.sqrt(nb_samples))
     nb_row = math.ceil(nb_samples / nb_col)
 
-    fig, axes = plt.subplots(nb_row, nb_col, figsize=(3*nb_col, 3*nb_row))
+    fig, axes = plt.subplots(nb_row, nb_col, figsize=(3 * nb_col, 3 * nb_row))
 
     # Toujours 2D, quelles que soient les tailles
-    axes = np.atleast_1d(axes)             # -> array 1D si un seul axe
+    axes = np.atleast_1d(axes)  # -> array 1D si un seul axe
     axes = np.array(axes, dtype=object).reshape(nb_row, nb_col)
 
     for i in range(nb_row * nb_col):
-        r, c = divmod(i, nb_col)           
+        r, c = divmod(i, nb_col)
         ax = axes[r, c]
         if i < nb_samples:
             img = images[i]
             # normalisation min-max par image
             img = (255 * (img - img.min()) / (img.max() - img.min() + 1e-8)).to(torch.uint8)
-            if img.size(0) == 3 : ax.imshow(img.permute(1, 2, 0).cpu().numpy())
-            else : ax.imshow(img[0].cpu().numpy(), cmap="gray")
+            if img.size(0) == 3:
+                ax.imshow(img.permute(1, 2, 0).cpu().numpy())
+            else:
+                ax.imshow(img[0].cpu().numpy(), cmap="gray")
             # titre robuste (labels scalaires ou vecteurs)
             lbl = labels[i]
             try:
@@ -103,6 +111,7 @@ def display(batch: tuple[torch.Tensor]) -> None:
     plt.tight_layout()
     plt.show()
 
+
 def build_mask(labels: torch.Tensor, select_factor: int, factor_value) -> tuple[torch.Tensor, torch.Tensor]:
     """
     labels : [N, F] ou [N]  (valeurs -1/1 ou 0/1)
@@ -111,15 +120,16 @@ def build_mask(labels: torch.Tensor, select_factor: int, factor_value) -> tuple[
 
     Retourne:
       mask    : [N] bool, True si l'échantillon est gardé
-      idx_m2o : [M] long, pour un index j dans le tens. masqué, 
+      idx_m2o : [M] long, pour un index j dans le tens. masqué,
                           l'original vaut idx_m2o[j]
     """
     col = labels[:, select_factor] if labels.ndim == 2 else labels
-    mask = (col == factor_value)                            # [N] bool
-    idx_m2o = mask.nonzero(as_tuple=True)[0].to(torch.long) # [M]
+    mask = col == factor_value  # [N] bool
+    idx_m2o = mask.nonzero(as_tuple=True)[0].to(torch.long)  # [M]
     return mask, idx_m2o
 
-def sample_from(mu_logvar: tuple[torch.Tensor], test: bool=False) -> torch.Tensor:
+
+def sample_from(mu_logvar: tuple[torch.Tensor], test: bool = False) -> torch.Tensor:
     mu, logvar = mu_logvar
 
     # clamp pour éviter exp(0.5 * logvar) -> inf
@@ -134,13 +144,10 @@ def sample_from(mu_logvar: tuple[torch.Tensor], test: bool=False) -> torch.Tenso
 
     # optionnel : garde-fou supplémentaire
     if not torch.isfinite(z).all():
-        print("[sample_from] Non-finite in z:",
-              "NaN =", torch.isnan(z).sum().item(),
-              "Inf =", torch.isinf(z).sum().item())
+        print("[sample_from] Non-finite in z:", "NaN =", torch.isnan(z).sum().item(), "Inf =", torch.isinf(z).sum().item())
         raise ValueError("Non-finite z in sample_from")
 
     return z
-
 
 
 def del_outliers(arr: np.ndarray, k: int) -> np.ndarray:
@@ -155,11 +162,13 @@ def del_outliers(arr: np.ndarray, k: int) -> np.ndarray:
 
 def hex_to_rgb01(h):
     h = h.lstrip("#")
-    return np.array([int(h[i:i+2], 16) for i in (0, 2, 4)]) / 255.0
+    return np.array([int(h[i : i + 2], 16) for i in (0, 2, 4)]) / 255.0
+
 
 def rgb01_to_hex(rgb):
     rgb = np.clip(np.array(rgb) * 255.0, 0, 255).astype(int)
     return "#{:02x}{:02x}{:02x}".format(rgb[0], rgb[1], rgb[2])
+
 
 def interpolate_hex_palette(base_hex_colors, n_out):
     """Interpole linéairement une palette hex (RGB) vers n_out couleurs."""
@@ -169,27 +178,33 @@ def interpolate_hex_palette(base_hex_colors, n_out):
     out = np.stack([np.interp(x_out, x_base, base[:, ch]) for ch in range(3)], axis=1)  # [n_out,3]
     return [rgb01_to_hex(out[i]) for i in range(n_out)]
 
+
 def load_json(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as f:
         return json.load(f)
 
-def display_latent(labels: torch.Tensor, 
-               mu_logvars: None|tuple[torch.Tensor]=None,
-               z: None|torch.Tensor=None,
-               title: str="latent space", 
-               test: bool=False,
-               norm=None,) :
+
+def display_latent(
+    labels: torch.Tensor,
+    mu_logvars: None | tuple[torch.Tensor] = None,
+    z: None | torch.Tensor = None,
+    title: str = "latent space",
+    test: bool = False,
+    norm=None,
+):
     """
     Generate a plot to visualize in 2D the latent space.
     Ensure that if z=None, mu_logvars is not None.
-    
+
     Args:
     feats: tuple[torch.Tensor], ((number_sample,latent_dim), (number_sample,latent_dim))
     labels: torch.Tensor, (number_sample, 1)
-    z: None|torch.Tensor, (number_sample, latent_dim). Allows to give directly the latent vector. 
+    z: None|torch.Tensor, (number_sample, latent_dim). Allows to give directly the latent vector.
     test: bool, if inference set True.
     """
-    assert (z is not None and mu_logvars is None) or (z is None and mu_logvars is not None), "Among z and mu_logvars, one should be at None. Both can't be."
+    assert (z is not None and mu_logvars is None) or (z is None and mu_logvars is not None), (
+        "Among z and mu_logvars, one should be at None. Both can't be."
+    )
 
     pca = PCA(n_components=2)
     latent = []
@@ -198,25 +213,64 @@ def display_latent(labels: torch.Tensor,
     K = len(unique_labels)
 
     # --- palettes
-    colors10 = ["red","orange","yellow","lightgreen","green","lightblue","darkblue","royalblue","purple","pink"]
+    colors10 = ["red", "orange", "yellow", "lightgreen", "green", "lightblue", "darkblue", "royalblue", "purple", "pink"]
 
     base50 = [
-        '#ff0000', '#ff1f00', '#ff3d00', '#ff5c00', '#ff7a00',
-        '#ff9900', '#ffb800', '#ffd600', '#fff500', '#ebff00',
-        '#ccff00', '#aeff00', '#8fff00', '#70ff00', '#52ff00',
-        '#33ff00', '#14ff00', '#00ff0a', '#00ff29', '#00ff47',
-        '#00ff66', '#00ff85', '#00ffa3', '#00ffc2', '#00ffe0',
-        '#00ffff', '#00e0ff', '#00c2ff', '#00a3ff', '#0085ff',
-        '#0066ff', '#0047ff', '#0029ff', '#000aff', '#1400ff',
-        '#3300ff', '#5200ff', '#7000ff', '#8f00ff', '#ae00ff',
-        '#cc00ff', '#eb00ff', '#ff00f5', '#ff00d6', '#ff00b8',
-        '#ff0099', '#ff007a', '#ff005c', '#ff003d', '#ff001f'
+        "#ff0000",
+        "#ff1f00",
+        "#ff3d00",
+        "#ff5c00",
+        "#ff7a00",
+        "#ff9900",
+        "#ffb800",
+        "#ffd600",
+        "#fff500",
+        "#ebff00",
+        "#ccff00",
+        "#aeff00",
+        "#8fff00",
+        "#70ff00",
+        "#52ff00",
+        "#33ff00",
+        "#14ff00",
+        "#00ff0a",
+        "#00ff29",
+        "#00ff47",
+        "#00ff66",
+        "#00ff85",
+        "#00ffa3",
+        "#00ffc2",
+        "#00ffe0",
+        "#00ffff",
+        "#00e0ff",
+        "#00c2ff",
+        "#00a3ff",
+        "#0085ff",
+        "#0066ff",
+        "#0047ff",
+        "#0029ff",
+        "#000aff",
+        "#1400ff",
+        "#3300ff",
+        "#5200ff",
+        "#7000ff",
+        "#8f00ff",
+        "#ae00ff",
+        "#cc00ff",
+        "#eb00ff",
+        "#ff00f5",
+        "#ff00d6",
+        "#ff00b8",
+        "#ff0099",
+        "#ff007a",
+        "#ff005c",
+        "#ff003d",
+        "#ff001f",
     ]
 
     # --- choix cmap
     if K == 10:
         cmap = ListedColormap(colors10, name="mycats10")
-        print("\ncmap : personalised (10)\n")
 
     elif K < 10:
         # tab10 discret mais on garde un norm basé sur tes labels réels
@@ -236,41 +290,42 @@ def display_latent(labels: torch.Tensor,
     # --- norm/bounds (important si labels ne sont pas 0..K-1)
     bounds = np.concatenate([unique_labels - 0.5, [unique_labels[-1] + 0.5]])
     norm = BoundaryNorm(bounds, cmap.N, clip=True)
-            
 
-    if z is None :
+    if z is None:
         z = sample_from(mu_logvars, test=test)
 
-    #pca 
+    # pca
     latent_pca = z.detach().cpu().numpy()
     explained_axis = [-1, -1]
-    if not z.shape[1] in [1,2] : 
+    if not z.shape[1] in [1, 2]:
         latent_pca = pca.fit_transform(latent_pca)
         explained_axis = pca.explained_variance_ratio_
 
-    #variance explained : if -2, no pca has been run
+    # variance explained : if -2, no pca has been run
     explained = np.sum(explained_axis)
     pts = latent_pca
 
-    if z.shape[1] == 1 : pts_y = np.zeros_like(pts[:, 0])
-    else : pts_y = pts[:, 1]
+    if z.shape[1] == 1:
+        pts_y = np.zeros_like(pts[:, 0])
+    else:
+        pts_y = pts[:, 1]
     pts_x = pts[:, 0]
 
-    pts_x= del_outliers(arr=pts_x, k=5)
+    pts_x = del_outliers(arr=pts_x, k=5)
     pts_y = del_outliers(arr=pts_y, k=5)
-    
+
     plt.scatter(pts_x, pts_y, c=labels.squeeze(1), cmap=cmap, alpha=0.4, norm=norm)
     plt.xlabel(f"{explained_axis[0]}")
     plt.ylabel(f"{explained_axis[1]}")
-    #cbar = plt.colorbar(sc, ticks=unique_labels)
-    #cbar.ax.set_yticklabels([f'class {int(c)}' for c in unique_labels])
+    # cbar = plt.colorbar(sc, ticks=unique_labels)
+    # cbar.ax.set_yticklabels([f'class {int(c)}' for c in unique_labels])
 
-    plt.title(title+f"-explained : {explained}")
+    plt.title(title + f"-explained : {explained}")
     plt.grid()
     plt.show()
-    
 
-def set_device(pref_gpu: int=0, verb=False) -> str :
+
+def set_device(pref_gpu: int = 0, verb=False) -> str:
     """
     Looking for a GPU and display informations if available.
 
@@ -283,11 +338,13 @@ def set_device(pref_gpu: int=0, verb=False) -> str :
 
     device = f"cuda:{pref_gpu}" if is_gpu else "cpu"
 
-    if is_gpu :
-        if verb : print("Nombre de GPU :", torch.cuda.device_count())
-        if pref_gpu>=torch.cuda.device_count() : 
+    if is_gpu:
+        if verb:
+            print("Nombre de GPU :", torch.cuda.device_count())
+        if pref_gpu >= torch.cuda.device_count():
             pref_gpu = 0
-            if verb : print(f"{pref_gpu} gpu is not available. Switched on gpu0")
+            if verb:
+                print(f"{pref_gpu} gpu is not available. Switched on gpu0")
 
         for i in range(torch.cuda.device_count()):
             if verb:
@@ -299,12 +356,13 @@ def set_device(pref_gpu: int=0, verb=False) -> str :
 
     print(f"current device is {torch.cuda.current_device()}")
     return device, is_gpu
- 
+
 
 ############### merge plots
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 import os
+
 
 def merge_images(*image_paths, labels=None, font_size=20, separator_height=10):
     """
@@ -338,9 +396,7 @@ def merge_images(*image_paths, labels=None, font_size=20, separator_height=10):
     text_height = font_size + 10
 
     # Séparateur noir entre les blocs
-    separator = Image.fromarray(
-        np.zeros((separator_height, widths[0], 3), dtype=np.uint8)
-    )
+    separator = Image.fromarray(np.zeros((separator_height, widths[0], 3), dtype=np.uint8))
 
     final_parts = []
     for i, (img, label) in enumerate(zip(images, labels)):
@@ -392,7 +448,8 @@ def merge_images_with_black_gap(image_paths, gap=10):
         y += p.height
     return merged
 
-def grid_merge(image_paths, out_path, cols=3, padding=10, bg=(0,0,0), resize_to=None):
+
+def grid_merge(image_paths, out_path, cols=3, padding=10, bg=(0, 0, 0), resize_to=None):
     """
     Merge 6 images en une grille 2x3 (ou plus généralement rows x cols).
     - image_paths: liste de 6 chemins d’images.
@@ -431,28 +488,36 @@ def grid_merge(image_paths, out_path, cols=3, padding=10, bg=(0,0,0), resize_to=
 
 
 #########Log for models
-def log_cross_cov_heatmap(mu_s, logvar_s, mu_t, logvar_t, save_path: str, interactive: bool=False):
+def log_cross_cov_heatmap(mu_s, logvar_s, mu_t, logvar_t, save_path: str, interactive: bool = False):
     cov_mu = cross_cov(mu_s, mu_t).detach().cpu().numpy()
     assert cov_mu.shape == (mu_s.shape[1], mu_t.shape[1]), "ERROR COV MATRIX SHAPE"
     cov_logvar = cross_cov(logvar_s, logvar_t).detach().cpu().numpy()
 
     fig, axes = plt.subplots(1, 2, figsize=(10, 4))
 
-    sns.heatmap(cov_mu, ax=axes[0], cmap="coolwarm", center=0, cbar=True,)
+    sns.heatmap(
+        cov_mu,
+        ax=axes[0],
+        cmap="coolwarm",
+        center=0,
+        cbar=True,
+    )
     axes[0].set_title("cross_cov(mu_s, mu_t)")
 
     sns.heatmap(cov_logvar, ax=axes[1], cmap="coolwarm", center=0, cbar=True)
     axes[1].set_title("cross_cov(logvar_s, logvar_t)")
 
     plt.tight_layout()
-    if interactive : plt.show()
-    plt.savefig(save_path, bbox_inches='tight')
+    if interactive:
+        plt.show()
+    plt.savefig(save_path, bbox_inches="tight")
     plt.close(fig)
+
 
 def report_nonfinite(**named_tensors):
     problems = []
     for name, t in named_tensors.items():
-        if not torch.is_tensor(t): 
+        if not torch.is_tensor(t):
             continue
         mask = ~torch.isfinite(t)
         if mask.any():
@@ -463,4 +528,3 @@ def report_nonfinite(**named_tensors):
             problems.append(f"- {name}: NaN={n_nan}, Inf={n_inf}, ex_idx={ex}")
     if problems:
         raise RuntimeError("Non-finite detected:\n" + "\n".join(problems))
-    

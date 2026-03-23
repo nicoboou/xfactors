@@ -4,4 +4,23 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "datasets>=4.8.2",
+    "h5py>=3.16.0",
+    "lightning>=2.6.1",
+    "matplotlib>=3.10.8",
+    "scikit-learn>=1.7.2",
+    "seaborn>=0.13.2",
+    "torchvision>=0.25.0",
+    "wandb>=0.25.1",
+]
+
+[tool.ruff]
+line-length = 150
+indent-width = 4
+
+[tool.ruff.lint]
+ignore = ["E741", "F405", "F403", "E501","E701"]
+
+[tool.ruff.pycodestyle]
+max-doc-length = 150
