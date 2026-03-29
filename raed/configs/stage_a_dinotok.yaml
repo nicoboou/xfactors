@@ -1,0 +1,47 @@
+seed: 2026
+output_dir: raed/outputs/stage_a_dinotok
+run_name: stage_a_dinotok
+
+data:
+  image_size: 224
+  batch_size: 32
+  num_workers: 4
+  celeba_root: /projects/compures/alexandre/PyTorch-VAE/Data/
+  degradation_types: [blur, noise, jpeg]
+  degradation_levels: [0, 1, 2, 3, 4, 5]
+
+encoder:
+  backbone: dinov2_vitb14
+  repo: facebookresearch/dinov2
+  use_cls_token: false
+  freeze: true
+
+model:
+  latent_dim_s: 64
+  latent_dim_t: 32
+  proj_dim: 64
+  hidden_dim: 512
+  decoder_mode: dinotok
+
+loss:
+  lambda_mse: 1.0
+  lambda_cos: 0.5
+  lambda_nce: 0.1
+  lambda_kl_s: 0.001
+  lambda_kl_t: 0.001
+  temperature: 0.07
+
+train:
+  epochs: 20
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  grad_accum_steps: 1
+  mixed_precision: true
+  max_grad_norm: 1.0
+  log_every: 20
+  eval_every: 1
+
+wandb:
+  enabled: true
+  project: raed
+  group: stage_a
