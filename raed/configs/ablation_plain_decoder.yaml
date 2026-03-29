@@ -1,0 +1,48 @@
+seed: 2026
+output_dir: raed/outputs/ablation_plain_decoder
+run_name: ablation_plain_decoder
+stage_a_checkpoint: raed/outputs/stage_a_base/checkpoints/best.pt
+
+data:
+  image_size: 224
+  batch_size: 16
+  num_workers: 4
+  celeba_root: /projects/compures/alexandre/PyTorch-VAE/Data/
+  degradation_types: [blur, noise, jpeg]
+  degradation_levels: [0, 1, 2, 3, 4, 5]
+
+encoder:
+  backbone: dinov2_vitb14
+  repo: facebookresearch/dinov2
+  use_cls_token: false
+  freeze: true
+
+model:
+  freeze_stage_a: true
+  input_mode: st
+  decoder_mode: plain
+  latent_dim_s: 64
+  latent_dim_t: 32
+  hidden_dim: 512
+  feature_dim: 768
+  shallow_dim: 128
+
+loss:
+  lambda_l1: 1.0
+  lambda_lpips: 0.5
+  lambda_sem: 0.2
+
+train:
+  epochs: 20
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  grad_accum_steps: 1
+  mixed_precision: true
+  max_grad_norm: 1.0
+  log_every: 20
+  eval_every: 1
+
+wandb:
+  enabled: true
+  project: raed
+  group: stage_b_ablation
