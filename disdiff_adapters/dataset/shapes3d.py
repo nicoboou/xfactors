@@ -81,13 +81,26 @@ class Shapes3DDataset(Dataset):
         out = TF.to_tensor(jpeg_img).to(image.dtype)
         return torch.clamp(out, 0.0, 1.0)
 
+    def _apply_inpainting(self, image: torch.Tensor, level_norm: float) -> torch.Tensor:
+        size_ratio = 0.8 * level_norm
+        if size_ratio <= 0:
+            return image
+        _, h, w = image.shape
+        crop_h = int(h * size_ratio)
+        crop_w = int(w * size_ratio)
+        top = (h - crop_h) // 2
+        left = (w - crop_w) // 2
+        image = image.clone()
+        image[:, top:top+crop_h, left:left+crop_w] = 0.5
+        return image.clamp(0.0, 1.0)
+
     def _apply_degradation(self, image: torch.Tensor, level: int) -> torch.Tensor:
         if (not self.degradation_types) or (self.degradation_types == ["none"]):
             return image
 
         level_norm = 0.0 if self.max_level <= 0 else float(level) / float(self.max_level)
         selected_types = list(self.degradation_types)
-        allowed_types = {"none", "combo", "bilinear", "bicubic", "nearest_neighbor", "blur", "noise", "jpeg"}
+        allowed_types = {"none", "combo", "bilinear", "bicubic", "nearest_neighbor", "blur", "noise", "jpeg", "inpainting"}
         invalid_types = [d for d in selected_types if d not in allowed_types]
         if invalid_types:
             raise ValueError(f"Unknown degradation type(s): {invalid_types}. Allowed: {sorted(allowed_types)}")
@@ -109,6 +122,8 @@ class Shapes3DDataset(Dataset):
                 out = self._apply_noise(out, level_norm)
             elif degradation_type == "jpeg":
                 out = self._apply_jpeg(out, level_norm)
+            elif degradation_type == "inpainting":
+                out = self._apply_inpainting(out, level_norm)
         return out
 
     def __getitem__(self, idx: int) -> tuple[torch.Tensor, torch.Tensor]:

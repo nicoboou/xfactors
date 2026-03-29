@@ -10,6 +10,9 @@
 disdiff_adapters/logs/*
 **/out/*
 **/PyTorch-VAE/*
+AGENTS.md
 **/lightning_logs/*
 **/data/*
 uv.lock
+.gitignore
+RAED.md

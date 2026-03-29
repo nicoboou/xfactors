@@ -1,12 +1,12 @@
 #!/bin/bash
-# CUDA_VISIBLE_DEVICES=0,1,2 bash disdiff_adapters/scripts/train/train_x.sh 1.0 all shapes_downsample 0,1,2
+# CUDA_VISIBLE_DEVICES=0,1,2 bash disdiff_adapters/scripts/train/train_x.sh 1.0 all shapes_downsample 0,1,2 40
 
 cd /projects/compures/nicolas/xfactors
 source /projects/compures/nicolas/xfactors/.venv/bin/activate
 
 batch_size=32
 max_epochs=70
-dataset="celeba"
+dataset="shapes"
 beta_s="$1"
 beta_t=100.0
 latent_dims_s=("126")
@@ -21,8 +21,8 @@ l_nce_by_factors="0.1"
 l_anti_nce=0.0
 key="_with_merge"
 version_model="$3"
-degradation_types="nearest_neighbor" # ["none", "combo", "bilinear", "bicubic", "nearest_neighbor", "blur", "noise", "jpeg"]
-degradation_levels="0,3,5"
+degradation_types="inpainting" # ["none", "combo", "bilinear", "bicubic", "nearest_neighbor", "blur", "noise", "jpeg", "inpainting"]
+degradation_levels="0,1"
 
 gpus="${4:-0}"
 
