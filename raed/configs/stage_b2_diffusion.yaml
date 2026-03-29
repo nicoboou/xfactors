@@ -1,0 +1,60 @@
+seed: 2026
+output_dir: raed/outputs/stage_b2_diffusion
+run_name: stage_b2_diffusion
+stage_a_checkpoint: raed/outputs/stage_a_base/checkpoints/best.pt
+stage_b_decoder_checkpoint: raed/outputs/stage_b_decoder/checkpoints/best.pt
+
+data:
+  image_size: 224
+  batch_size: 8
+  num_workers: 4
+  celeba_root: /projects/compures/alexandre/PyTorch-VAE/Data/
+  degradation_types: [blur, noise, jpeg]
+  degradation_levels: [0, 1, 2, 3, 4, 5]
+
+encoder:
+  backbone: dinov2_vitb14
+  repo: facebookresearch/dinov2
+  use_cls_token: false
+  freeze: true
+
+model:
+  freeze_stage_a: true
+  freeze_decoder: true
+  latent_dim_s: 64
+  latent_dim_t: 32
+  hidden_dim: 512
+  feature_dim: 768
+
+diffusion:
+  option: option1
+  num_steps: 200
+  beta_schedule: linear
+  objective: eps
+  denoiser_hidden_dim: 256
+  denoiser_depth: 4
+
+inference:
+  refine_steps: 20
+  guidance_scale: 1.0
+  use_diffusion_refine: true
+
+anchor:
+  mode: mean_clean
+
+loss:
+  lambda_diffusion: 1.0
+
+train:
+  epochs: 10
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  grad_accum_steps: 1
+  mixed_precision: true
+  max_grad_norm: 1.0
+  log_every: 20
+
+wandb:
+  enabled: true
+  project: raed
+  group: stage_b2

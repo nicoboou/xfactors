@@ -6,7 +6,13 @@ import numpy as np
 import torch
 
 from raed.src.data import build_celeba_weak_dataloaders
-from raed.src.models import DinoTokPixelDecoder, FrozenDinoEncoder, PlainPixelDecoder
+from raed.src.models import (
+    DinoTokPixelDecoder,
+    FrozenDinoEncoder,
+    LatentRAEDDiffusion,
+    PlainPixelDecoder,
+    SemanticConditionedPixelDiffusion,
+)
 from raed.src.train.train_stage_a import StageAModel
 from raed.src.utils import apply_overrides, load_config
 
@@ -123,3 +129,71 @@ def load_stage_b_decoder(cfg_path: str, overrides: list[str], checkpoint: str | 
     decoder.eval()
 
     return cfg, stage_a_model, encoder, decoder, data.val, device
+
+
+@torch.no_grad()
+def load_stage_b2_diffusion(cfg_path: str, overrides: list[str], checkpoint: str | None):
+    cfg = apply_overrides(load_config(cfg_path), overrides)
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    diffusion_ckpt = checkpoint or str(Path(cfg["output_dir"]) / "checkpoints" / "best.pt")
+    diffusion_state = torch.load(diffusion_ckpt, map_location="cpu")
+    cfg = diffusion_state.get("config", cfg)
+
+    stage_a_state = torch.load(cfg["stage_a_checkpoint"], map_location="cpu")
+    stage_a_cfg = stage_a_state["config"]
+    data = build_celeba_weak_dataloaders(cfg)
+    encoder = FrozenDinoEncoder(**stage_a_cfg["encoder"]).to(device)
+    encoder.eval()
+
+    batch = next(iter(data.val))
+    sample_x = batch["image"].to(device)
+    deep_tokens = encoder.forward_deep(sample_x)
+    in_dim = deep_tokens.shape[-1]
+    shallow = encoder.forward_shallow(sample_x)
+    shallow_dim = in_dim if shallow is None else shallow.shape[-1]
+
+    stage_a_model = StageAModel(stage_a_cfg, in_dim=in_dim).to(device)
+    stage_a_model.load_state_dict(stage_a_state["model"])
+    stage_a_model.eval()
+
+    option = cfg["diffusion"].get("option", "option1")
+    if option == "option1":
+        diffusion_model = SemanticConditionedPixelDiffusion(
+            s_dim=cfg["model"]["latent_dim_s"],
+            num_steps=cfg["diffusion"]["num_steps"],
+            schedule=cfg["diffusion"].get("beta_schedule", "linear"),
+            hidden_dim=cfg["diffusion"].get("denoiser_hidden_dim", 256),
+        ).to(device)
+    else:
+        diffusion_model = LatentRAEDDiffusion(
+            z_dim=cfg["model"]["latent_dim_s"] + cfg["model"]["latent_dim_t"],
+            num_steps=cfg["diffusion"]["num_steps"],
+            schedule=cfg["diffusion"].get("beta_schedule", "linear"),
+            hidden_dim=cfg["diffusion"].get("denoiser_hidden_dim", 256),
+            depth=cfg["diffusion"].get("denoiser_depth", 4),
+        ).to(device)
+    diffusion_model.load_state_dict(diffusion_state["diffusion_model"])
+    diffusion_model.eval()
+
+    decoder = None
+    decoder_mode = "plain"
+    decoder_input_mode = "st"
+    if option == "option2":
+        decoder_state = torch.load(cfg["stage_b_decoder_checkpoint"], map_location="cpu")
+        decoder_cfg = decoder_state["config"]
+        input_mode = decoder_cfg["model"].get("input_mode", "st")
+        input_dim = cfg["model"]["latent_dim_s"] + cfg["model"]["latent_dim_t"] if input_mode == "st" else in_dim
+        decoder_mode = decoder_cfg["model"].get("decoder_mode", "plain")
+        if decoder_mode == "plain":
+            decoder = PlainPixelDecoder(input_dim).to(device)
+        else:
+            decoder = DinoTokPixelDecoder(
+                deep_dim=input_dim,
+                shallow_dim=shallow_dim,
+                fused_dim=decoder_cfg["model"].get("feature_dim", input_dim),
+            ).to(device)
+        decoder.load_state_dict(decoder_state["decoder"])
+        decoder.eval()
+        decoder_input_mode = input_mode
+
+    return cfg, stage_a_model, encoder, diffusion_model, decoder, decoder_mode, decoder_input_mode, data.val, device
