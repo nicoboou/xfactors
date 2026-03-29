@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "disdiff-adapters"
 version = "0.1.0"
@@ -25,3 +29,6 @@ ignore = ["E741", "F405", "F403", "E501","E701"]
 
 [tool.ruff.pycodestyle]
 max-doc-length = 150
+
+[tool.setuptools.packages.find]
+include = ["disdiff_adapters*", "raed*"]

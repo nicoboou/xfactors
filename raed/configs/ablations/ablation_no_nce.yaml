@@ -1,12 +1,17 @@
 seed: 2026
-output_dir: raed/outputs/ablation_no_kl_t
-run_name: ablation_no_kl_t
+output_dir: raed/outputs/ablation_no_nce
+run_name: ablation_no_nce
 
 data:
+  dataset: __REQUIRED__  # celeba|shapes
   image_size: 224
   batch_size: 32
   num_workers: 4
-  celeba_root: /projects/compures/alexandre/PyTorch-VAE/Data/
+  root: null
+  train_path: null
+  val_path: null
+  image_key: images
+  val_ratio: 0.1
   degradation_types: [blur, noise, jpeg]
   degradation_levels: [0, 1, 2, 3, 4, 5]
 
@@ -25,9 +30,9 @@ model:
 loss:
   lambda_mse: 1.0
   lambda_cos: 0.5
-  lambda_nce: 0.1
+  lambda_nce: 0.0
   lambda_kl_s: 0.001
-  lambda_kl_t: 0.0
+  lambda_kl_t: 0.001
   temperature: 0.07
 
 train:
@@ -39,6 +44,12 @@ train:
   max_grad_norm: 1.0
   log_every: 20
   eval_every: 1
+
+runtime:
+  gpu_ids: [0]
+  use_ddp: false
+  backend: nccl
+  find_unused_parameters: false
 
 wandb:
   enabled: true

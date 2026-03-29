@@ -4,7 +4,11 @@
 *.png
 *.pth
 *.pt
+*.log
+*.json
+*.wandb
 .venv/*
+**/wandb/*
 .python-version*
 .env
 disdiff_adapters/logs/*
@@ -14,5 +18,6 @@ AGENTS.md
 **/lightning_logs/*
 **/data/*
 uv.lock
+*.txt
 .gitignore
 RAED.md

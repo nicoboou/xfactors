@@ -3,10 +3,16 @@ output_dir: raed/outputs/stage_a_base
 run_name: stage_a_base
 
 data:
+  dataset: __REQUIRED__  # celeba|shapes
   image_size: 224
   batch_size: 32
-  num_workers: 4
-  celeba_root: /projects/compures/alexandre/PyTorch-VAE/Data/
+  num_workers: 12
+  root: null
+  train_path: null
+  val_path: null
+  image_key: images
+  val_ratio: 0.1
+  sampler_mode: shuffle  # shuffle|balanced
   degradation_types: [blur, noise, jpeg]
   degradation_levels: [0, 1, 2, 3, 4, 5]
 
@@ -39,6 +45,12 @@ train:
   max_grad_norm: 1.0
   log_every: 20
   eval_every: 1
+
+runtime:
+  gpu_ids: [0]
+  use_ddp: false
+  backend: nccl
+  find_unused_parameters: false
 
 wandb:
   enabled: true

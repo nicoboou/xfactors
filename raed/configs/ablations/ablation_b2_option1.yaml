@@ -5,10 +5,15 @@ stage_a_checkpoint: raed/outputs/stage_a_base/checkpoints/best.pt
 stage_b_decoder_checkpoint: raed/outputs/stage_b_decoder/checkpoints/best.pt
 
 data:
+  dataset: __REQUIRED__  # celeba|shapes
   image_size: 224
   batch_size: 8
   num_workers: 4
-  celeba_root: /projects/compures/alexandre/PyTorch-VAE/Data/
+  root: null
+  train_path: null
+  val_path: null
+  image_key: images
+  val_ratio: 0.1
   degradation_types: [blur, noise, jpeg]
   degradation_levels: [0, 1, 2, 3, 4, 5]
 
@@ -53,6 +58,12 @@ train:
   mixed_precision: true
   max_grad_norm: 1.0
   log_every: 20
+
+runtime:
+  gpu_ids: [0]
+  use_ddp: false
+  backend: nccl
+  find_unused_parameters: false
 
 wandb:
   enabled: true

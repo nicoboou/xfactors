@@ -8,7 +8,7 @@ import torch.nn.functional as f
 from torch.amp import GradScaler, autocast
 from tqdm import tqdm
 
-from raed.src.data import build_celeba_weak_dataloaders
+from raed.src.data import build_weak_dataloaders
 from raed.src.models import (
     DinoTokPixelDecoder,
     FrozenDinoEncoder,
@@ -17,7 +17,21 @@ from raed.src.models import (
     SemanticConditionedPixelDiffusion,
 )
 from raed.src.train.train_stage_a import StageAModel
-from raed.src.utils import apply_overrides, create_logger, load_config, log_metrics, save_checkpoint, seed_everything
+from raed.src.utils import (
+    apply_overrides,
+    cleanup_distributed,
+    create_logger,
+    ddp_wrap,
+    init_distributed,
+    is_main_process,
+    load_config,
+    log_metrics,
+    reduce_metrics,
+    save_checkpoint,
+    seed_everything,
+    set_cuda_visible_devices,
+    state_dict_for_save,
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -71,13 +85,15 @@ def _decode_option2(
 def main() -> None:
     args = parse_args()
     cfg = apply_overrides(load_config(args.config), args.overrides)
-    seed_everything(int(cfg["seed"]))
+    set_cuda_visible_devices(cfg.get("runtime", {}).get("gpu_ids", []))
+    device, rank = init_distributed(cfg)
+    seed_everything(int(cfg["seed"]) + rank)
 
     out_dir = Path(cfg["output_dir"])
-    out_dir.mkdir(parents=True, exist_ok=True)
-    run = create_logger(cfg)
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    data = build_celeba_weak_dataloaders(cfg)
+    if is_main_process():
+        out_dir.mkdir(parents=True, exist_ok=True)
+    run = create_logger(cfg) if is_main_process() else None
+    data = build_weak_dataloaders(cfg)
 
     stage_a_cfg, stage_a_state, encoder = _load_stage_a_and_encoder(cfg, device)
     first_batch = next(iter(data.train))
@@ -132,6 +148,12 @@ def main() -> None:
     else:
         raise ValueError(f"Unknown diffusion.option={option}")
 
+    diffusion_model = ddp_wrap(
+        diffusion_model,
+        device=device,
+        find_unused_parameters=bool(cfg.get("runtime", {}).get("find_unused_parameters", False)),
+    )
+
     optim = torch.optim.AdamW(diffusion_model.parameters(), lr=cfg["train"]["lr"], weight_decay=cfg["train"]["weight_decay"])
     scaler = GradScaler(enabled=bool(cfg["train"].get("mixed_precision", True) and device.type == "cuda"))
 
@@ -141,6 +163,8 @@ def main() -> None:
     refine_steps = int(cfg["inference"].get("refine_steps", 20))
 
     for epoch in range(int(cfg["train"]["epochs"])):
+        if data.train_sampler is not None:
+            data.train_sampler.set_epoch(epoch)
         diffusion_model.train()
         optim.zero_grad(set_to_none=True)
         running = {"L_diffusion": 0.0, "preview_metric": 0.0}
@@ -186,37 +210,40 @@ def main() -> None:
             global_step += 1
 
             if global_step % int(cfg["train"].get("log_every", 20)) == 0:
-                log_metrics(
-                    run,
-                    {
-                        "train/L_diffusion": running["L_diffusion"] / max(batches, 1),
-                        "train/preview_metric": running["preview_metric"] / max(batches, 1),
-                    },
-                    step=global_step,
-                )
+                payload = {
+                    "train/L_diffusion": running["L_diffusion"] / max(batches, 1),
+                    "train/preview_metric": running["preview_metric"] / max(batches, 1),
+                }
+                payload = reduce_metrics(payload, device)
+                if is_main_process():
+                    log_metrics(run, payload, step=global_step)
 
         train_payload = {
             "train/L_diffusion": running["L_diffusion"] / max(batches, 1),
             "train/preview_metric": running["preview_metric"] / max(batches, 1),
         }
-        log_metrics(run, train_payload, step=global_step)
+        train_payload = reduce_metrics(train_payload, device)
+        if is_main_process():
+            log_metrics(run, train_payload, step=global_step)
         val_score = train_payload["train/L_diffusion"]
 
         state = {
             "epoch": epoch,
             "config": cfg,
-            "diffusion_model": diffusion_model.state_dict(),
+            "diffusion_model": state_dict_for_save(diffusion_model),
             "stage_a_checkpoint": cfg["stage_a_checkpoint"],
             "stage_b_decoder_checkpoint": cfg.get("stage_b_decoder_checkpoint", None),
             "best_val": best_val,
         }
-        save_checkpoint(state, str(out_dir), "last")
-        if val_score < best_val:
-            best_val = val_score
-            save_checkpoint(state, str(out_dir), "best")
+        if is_main_process():
+            save_checkpoint(state, str(out_dir), "last")
+            if val_score < best_val:
+                best_val = val_score
+                save_checkpoint(state, str(out_dir), "best")
 
-    if run is not None:
+    if is_main_process() and run is not None:
         run.finish()
+    cleanup_distributed()
 
 
 if __name__ == "__main__":

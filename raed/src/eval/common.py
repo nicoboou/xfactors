@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from raed.src.data import build_celeba_weak_dataloaders
+from raed.src.data import build_weak_dataloaders
 from raed.src.models import (
     DinoTokPixelDecoder,
     FrozenDinoEncoder,
@@ -25,7 +25,7 @@ def load_stage_a(cfg_path: str, overrides: list[str], checkpoint: str | None):
     state = torch.load(ckpt_path, map_location="cpu")
     cfg = state.get("config", cfg)
 
-    data = build_celeba_weak_dataloaders(cfg)
+    data = build_weak_dataloaders(cfg)
     encoder = FrozenDinoEncoder(**cfg["encoder"]).to(device)
     encoder.eval()
     batch = next(iter(data.val))
@@ -103,7 +103,7 @@ def load_stage_b_decoder(cfg_path: str, overrides: list[str], checkpoint: str | 
 
     stage_a_state = torch.load(cfg["stage_a_checkpoint"], map_location="cpu")
     stage_a_cfg = stage_a_state["config"]
-    data = build_celeba_weak_dataloaders(cfg)
+    data = build_weak_dataloaders(cfg)
 
     encoder = FrozenDinoEncoder(**stage_a_cfg["encoder"]).to(device)
     encoder.eval()
@@ -141,7 +141,7 @@ def load_stage_b2_diffusion(cfg_path: str, overrides: list[str], checkpoint: str
 
     stage_a_state = torch.load(cfg["stage_a_checkpoint"], map_location="cpu")
     stage_a_cfg = stage_a_state["config"]
-    data = build_celeba_weak_dataloaders(cfg)
+    data = build_weak_dataloaders(cfg)
     encoder = FrozenDinoEncoder(**stage_a_cfg["encoder"]).to(device)
     encoder.eval()
 

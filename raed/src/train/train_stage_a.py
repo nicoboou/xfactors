@@ -9,10 +9,24 @@ from torch.amp import GradScaler, autocast
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from raed.src.data import build_celeba_weak_dataloaders
+from raed.src.data import build_weak_dataloaders
 from raed.src.losses import deep_reconstruction_loss, kl_standard_normal, supervised_info_nce
 from raed.src.models import DinoReconstructor, FrozenDinoEncoder, VariationalFactorizer
-from raed.src.utils import apply_overrides, create_logger, load_config, log_metrics, save_checkpoint, seed_everything
+from raed.src.utils import (
+    apply_overrides,
+    cleanup_distributed,
+    create_logger,
+    ddp_wrap,
+    init_distributed,
+    is_main_process,
+    load_config,
+    log_metrics,
+    reduce_metrics,
+    save_checkpoint,
+    seed_everything,
+    set_cuda_visible_devices,
+    state_dict_for_save,
+)
 
 
 class StageAModel(nn.Module):
@@ -95,15 +109,17 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     cfg = apply_overrides(load_config(args.config), args.overrides)
-    seed_everything(int(cfg["seed"]))
+    set_cuda_visible_devices(cfg.get("runtime", {}).get("gpu_ids", []))
+    device, rank = init_distributed(cfg)
+    seed_everything(int(cfg["seed"]) + rank)
 
     out_dir = Path(cfg["output_dir"])
-    out_dir.mkdir(parents=True, exist_ok=True)
+    if is_main_process():
+        out_dir.mkdir(parents=True, exist_ok=True)
 
-    run = create_logger(cfg)
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    run = create_logger(cfg) if is_main_process() else None
 
-    data = build_celeba_weak_dataloaders(cfg)
+    data = build_weak_dataloaders(cfg)
     encoder = FrozenDinoEncoder(**cfg["encoder"]).to(device)
     encoder.eval()
 
@@ -113,6 +129,7 @@ def main() -> None:
         in_dim = deep_tokens.shape[-1]
 
     model = StageAModel(cfg, in_dim=in_dim).to(device)
+    model = ddp_wrap(model, device=device, find_unused_parameters=bool(cfg.get("runtime", {}).get("find_unused_parameters", False)))
     optim = torch.optim.AdamW(model.parameters(), lr=cfg["train"]["lr"], weight_decay=cfg["train"]["weight_decay"])
     scaler = GradScaler(enabled=bool(cfg["train"].get("mixed_precision", True) and device.type == "cuda"))
 
@@ -121,6 +138,8 @@ def main() -> None:
     grad_accum = int(cfg["train"].get("grad_accum_steps", 1))
 
     for epoch in range(int(cfg["train"]["epochs"])):
+        if data.train_sampler is not None:
+            data.train_sampler.set_epoch(epoch)
         model.train()
         optim.zero_grad(set_to_none=True)
         running = {"L_rec_deep": 0.0, "L_nce": 0.0, "KL_s": 0.0, "KL_t": 0.0, "loss_total": 0.0}
@@ -148,29 +167,38 @@ def main() -> None:
             batches += 1
             global_step += 1
             if global_step % int(cfg["train"].get("log_every", 20)) == 0:
-                log_metrics(run, {f"train/{k}": running[k] / batches for k in running}, step=global_step)
+                payload = {f"train/{k}": running[k] / batches for k in running}
+                payload = reduce_metrics(payload, device)
+                if is_main_process():
+                    log_metrics(run, payload, step=global_step)
 
         train_payload = {f"train/{k}": v / max(batches, 1) for k, v in running.items()}
-        log_metrics(run, train_payload, step=global_step)
+        train_payload = reduce_metrics(train_payload, device)
+        if is_main_process():
+            log_metrics(run, train_payload, step=global_step)
 
         val_metrics = validate(cfg, model, encoder, data.val, device)
+        val_metrics = reduce_metrics(val_metrics, device)
         val_score = val_metrics["val/loss_total"]
-        log_metrics(run, val_metrics, step=global_step)
+        if is_main_process():
+            log_metrics(run, val_metrics, step=global_step)
 
         state = {
             "epoch": epoch,
             "config": cfg,
-            "model": model.state_dict(),
+            "model": state_dict_for_save(model),
             "encoder": cfg["encoder"],
             "best_val": best_val,
         }
-        save_checkpoint(state, str(out_dir), "last")
-        if val_score < best_val:
-            best_val = val_score
-            save_checkpoint(state, str(out_dir), "best")
+        if is_main_process():
+            save_checkpoint(state, str(out_dir), "last")
+            if val_score < best_val:
+                best_val = val_score
+                save_checkpoint(state, str(out_dir), "best")
 
-    if run is not None:
+    if is_main_process() and run is not None:
         run.finish()
+    cleanup_distributed()
 
 
 if __name__ == "__main__":
